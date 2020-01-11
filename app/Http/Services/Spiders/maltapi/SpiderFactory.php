@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Services\Spiders;
+namespace App\Http\Services\Spiders\Maltapi;
 
-use GuzzleHttp\Psr7;
-use Config;
+class SpiderFactory {
 
-class Ahk3Spider implements ISpider
-{
+    private $typeMape = [
+        'ahks' => 'ahks'
+    ];
 
-	private $url;
+    private $url;
 
 	private $params = [
-		'code' => 'ahks',
+		'code' => '',
 		'rows' => 5,
 		'format' => 'json',
 		'token' => '138DB436F537B7E7',
@@ -52,5 +52,13 @@ class Ahk3Spider implements ISpider
 		$result->setSpiderTime(date('Y-m-d H:i:s'));
 
 		return $result;
-	}
+    }
+    
+    private function tokenError($msg) {
+        return $msg == '彩种错误.';
+    }
+
+    private function updateToken() {
+        
+    }
 }

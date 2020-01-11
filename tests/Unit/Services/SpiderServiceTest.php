@@ -5,12 +5,18 @@ namespace Tests\Unit;
 use PHPUnit\Framework\TestCase;
 use App\Http\Services\Spiders\SpiderFactory;
 use App;
+use Carbon\Carbon;
+use App\Http\Services\LotteryService;
+use App\Model\Lottery;
 
 class SpiderServiceTest extends TestCase
 {
     public function testAhks()
     {
-        $res = app(SpiderFactory::class)->handle('ahk3');
-        return $res ? $res->toArray() : [];
+        $lottery = Lottery::find(1);
+        print_r([
+            app(LotteryService::class)->getCurrentPeriod($lottery),
+            app(LotteryService::class)->getNextPeriod($lottery)
+        ]);exit;
     }
 }
